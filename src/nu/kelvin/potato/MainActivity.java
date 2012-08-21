@@ -18,8 +18,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.ClipboardManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +60,10 @@ public class MainActivity extends Activity {
 
 		otpView = (TextView) findViewById(R.id.otpView);
 		enterPin = (EditText) findViewById(R.id.enterPin);
+		// Special handling due to Android deprecations and incompatibilities
+		enterPin.setInputType(InputType.TYPE_CLASS_NUMBER);
+		enterPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+		// ----------------
 		buttonOk = (Button) findViewById(R.id.buttonOk);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		profileSpinner = (Spinner) findViewById(R.id.profileSelector);
